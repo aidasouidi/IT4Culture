@@ -1,0 +1,90 @@
+.divider:after,
+.divider:before {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #eee;
+}
+.h-custom {
+    height: calc(100% - 73px);
+}
+
+.logo-container{
+    margin: 50px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.logo-container img{
+    margin: 0 auto;
+}
+
+.app, .logout{
+    text-align: center
+}
+
+.line{
+    display: block;
+}
+
+.app-name{
+    font-family: "Raleway", sans-serif;
+    font-size: 22pt;
+}
+
+.app-slogan{
+    font-family: "Open Sans", sans-serif;
+    font-size: 10pt;
+}
+
+.error span {
+    color: red;
+}
+
+#header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 300px;
+    transition: all ease-in-out 0.5s;
+    z-index: 9997;
+    transition: all 0.5s;
+    padding: 0 15px;
+    background: #4472c4ff;
+    overflow-y: auto;
+}
+#main {
+    margin-left: 300px;
+}
+
+.sidebar-content{
+    margin: 50px 10px;
+}
+
+.rep, .dist {
+    margin : 50px 0;
+}
+
+#distForm input, #distForm button{
+    display: inline !important;
+    width: auto;
+}
+#distForm input{
+    margin: 5px;
+}
+/* Responsive view */
+@media (max-width: 450px) {
+    .h-custom {
+        height: 100%;
+    }
+}
+@media (max-width: 1199px) {
+    #header {
+      left: -300px;
+    }
+  
+    #main {
+      margin-left: 0;
+    }
+}
