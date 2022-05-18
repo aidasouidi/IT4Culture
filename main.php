@@ -1,5 +1,6 @@
 <?php
 
+// start new session
 session_start();
 // get app config
 $appConfig = include '../config/app_config.php';
