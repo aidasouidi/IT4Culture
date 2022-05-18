@@ -1,9 +1,13 @@
 <?php
 
+//Starts a new session
 session_start();
+
 if (isset($_SESSION['login']) && $_SESSION['login']) {
+    // get app config
+    $appConfig = include '../config/app_config.php';
     // redirect to app
-    header("Location: http://localhost:8084/IT4Culture/setup.php");
+    header('Location: '. $appConfig['base_url'] .'setup.php');
     exit();
 }
 ?>

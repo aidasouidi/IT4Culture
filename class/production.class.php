@@ -1,17 +1,27 @@
 <?php
 
-class Production{
+class Production
+{
     protected $db;
     private $table = 'productions';
-    function __construct($db) {
+    public function __construct($db)
+    {
         $this->db = $db;
     }
 
-    public function getAll() {
+    /**
+     * get all production rows from database
+     */
+    public function getAll()
+    {
         $query = 'SELECT * from ' .$this->table;
         return $this->db->fetchAll($query, []);
     }
-    public function getAllWithDistAndDates() {
+    /**
+    * get all production rows with associated dates and distribution
+    */
+    public function getAllWithDistAndDates()
+    {
         $query = 'SELECT * from ' .$this->table;
         $res = $this->db->fetchAll($query, []);
         $result = [];
@@ -23,7 +33,12 @@ class Production{
         return $result;
     }
 
-    public function getByIdWithDistAndDates($id) {
+    /**
+     * get all production rows by id with associated dates and distribution
+     * @param integer $id the id of production
+     */
+    public function getByIdWithDistAndDates($id)
+    {
         $query = 'SELECT * from ' .$this->table .' p where p.id = ?';
         $res = $this->db->fetch($query, [$id]);
         $res['distributions'] = $this->getProductionDistributionsById($id);
@@ -32,14 +47,23 @@ class Production{
         return $res;
     }
 
-    private function getProductionDistributionsById($id) {
+    /**
+     * get all distribution rows by id production
+     * @param integer $id the id of production
+     */
+    private function getProductionDistributionsById($id)
+    {
         $query = 'SELECT * from distribution where idProduction = ?';
         return $this->db->fetchAll($query, [$id]);
     }
 
-    private function getProductionDatesById($id) {
+    /**
+     * get all production dates by id production
+     * @param integer $id the id of production
+     */
+    private function getProductionDatesById($id)
+    {
         $query = 'SELECT * from productions_dates where idProduction = ?';
         return $this->db->fetchAll($query, [$id]);
     }
-
 }

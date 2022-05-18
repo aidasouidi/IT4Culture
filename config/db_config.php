@@ -5,5 +5,5 @@ return [
     'database' => 'it4culture',
     'username' => 'root',
     'password' => 'root',
-    'tables' => ['productions', 'distribution', 'productions_dates']
+    'tables' => ['productions', 'distribution', 'productions_dates']//used to check existance for every table
 ];

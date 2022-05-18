@@ -1,13 +1,20 @@
 <?php
 
-class Distribution{
+class Distribution
+{
     protected $db;
     private $table = 'distribution';
-    function __construct($db) {
+    public function __construct($db)
+    {
         $this->db = $db;
     }
 
-    public function insert($data) {
+    /**
+     * insert into distribution table
+     * @param array $data data to insert
+     */
+    public function insert($data)
+    {
         $query = 'INSERT INTO ' .$this->table . ' (idProduction, role, artiste) values (?, ?, ?)';
         $this->db->runQuery($query, $data);
     }

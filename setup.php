@@ -1,15 +1,17 @@
 <?php
 
+//Starts a new session
 session_start();
-if(!isset($_SESSION['login']) || !$_SESSION['login']) {
-    // redirect to login page
+
+// redirect to login page if user not logged
+if (!isset($_SESSION['login']) || !$_SESSION['login']) {
     header("Location: http://localhost:8084/IT4Culture/index.php");
     exit();
 }
 
 require_once('class/db.class.php');
 
-//get DB config 
+//get DB config
 $dbConfig = include 'config/db_config.php';
 $db = new db($dbConfig['host'], $dbConfig['username'], $dbConfig['password'], $dbConfig['database']);
 
@@ -58,9 +60,9 @@ $db = new db($dbConfig['host'], $dbConfig['username'], $dbConfig['password'], $d
 
                         echo '<span>Vérfication des tables ...';
                         $error = false;
-                        foreach($dbConfig['tables'] as $table) {
+                        foreach ($dbConfig['tables'] as $table) {
                             // check table existence
-                            if($db->tableExists($table)) {
+                            if ($db->tableExists($table)) {
                                 echo '<div class="alert alert-success" role="alert">
                                 Table : ' . $table . ' existe et installée </div>';
                             } else {
@@ -76,8 +78,6 @@ $db = new db($dbConfig['host'], $dbConfig['username'], $dbConfig['password'], $d
                             $_SESSION['db_setup_ok'] = true;
                             echo '<a href="./main.php"><button type="button" class="btn btn-success">OK</button></a>';
                         }
-
-
                     } else {
                         echo '<div class="alert alert-danger" role="alert">
                         Connexion echouée à la base de données : ' . $dbConfig['database'] . '</div>';

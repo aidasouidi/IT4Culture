@@ -5,34 +5,36 @@
     height: 1px;
     background: #eee;
 }
+
 .h-custom {
     height: calc(100% - 73px);
 }
 
-.logo-container{
+.logo-container {
     margin: 50px 0;
     display: flex;
     justify-content: center;
 }
 
-.logo-container img{
+.logo-container img {
     margin: 0 auto;
 }
 
-.app, .logout{
+.app,
+.logout {
     text-align: center
 }
 
-.line{
+.line {
     display: block;
 }
 
-.app-name{
+.app-name {
     font-family: "Raleway", sans-serif;
     font-size: 22pt;
 }
 
-.app-slogan{
+.app-slogan {
     font-family: "Open Sans", sans-serif;
     font-size: 10pt;
 }
@@ -54,37 +56,43 @@
     background: #4472c4ff;
     overflow-y: auto;
 }
+
 #main {
     margin-left: 300px;
 }
 
-.sidebar-content{
+.sidebar-content {
     margin: 50px 10px;
 }
 
-.rep, .dist {
-    margin : 50px 0;
+.rep,
+.dist {
+    margin: 50px 0;
 }
 
-#distForm input, #distForm button{
+#distForm input,
+#distForm button {
     display: inline !important;
     width: auto;
 }
-#distForm input{
+
+#distForm input {
     margin: 5px;
 }
+
 /* Responsive view */
 @media (max-width: 450px) {
     .h-custom {
         height: 100%;
     }
 }
+
 @media (max-width: 1199px) {
     #header {
-      left: -300px;
+        left: -300px;
     }
-  
+
     #main {
-      margin-left: 0;
+        margin-left: 0;
     }
 }

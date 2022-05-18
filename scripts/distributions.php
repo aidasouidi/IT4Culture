@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(isset($_SESSION['login']) && $_SESSION['login']) {
+if (isset($_SESSION['login']) && $_SESSION['login']) {
     require_once('../class/db.class.php');
     require_once('../class/distribution.class.php');
     $dbConfig = include '../config/db_config.php';
@@ -9,7 +9,8 @@ if(isset($_SESSION['login']) && $_SESSION['login']) {
     $dist = new Distribution($db);
     $dist->insert(array($_POST['idProd'], $_POST['role'], $_POST['artiste']));
     $db->close();
-    
-    header("Location: http://localhost:8084/IT4Culture/main.php");
+    // get app config
+    $appConfig = include '../config/app_config.php';
+    header('Location: '. $appConfig['base_url'] .'main.php');
     exit();
 }

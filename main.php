@@ -1,21 +1,23 @@
 <?php
 
 session_start();
-if(!isset($_SESSION['login']) || !$_SESSION['login']) {
+// get app config
+$appConfig = include '../config/app_config.php';
+if (!isset($_SESSION['login']) || !$_SESSION['login']) {
     // redirect to login page
-    header("Location: http://localhost:8084/IT4Culture/index.php");
+    header('Location: '.$appConfig['base_url'].'index.php');
     exit();
 }
 
 if (!isset($_SESSION['db_setup_ok']) || !$_SESSION['db_setup_ok']) {
-    header("Location: http://localhost:8084/IT4Culture/setup.php");
+    header('Location: '.$appConfig['base_url'].'setup.php');
     exit();
 }
 
 require_once('class/db.class.php');
 require_once('class/production.class.php');
 
-//get DB config 
+//get DB config
 $dbConfig = include 'config/db_config.php';
 $db = new db($dbConfig['host'], $dbConfig['username'], $dbConfig['password'], $dbConfig['database']);
 $prds = new Production($db);
@@ -68,7 +70,7 @@ $prodList = $prds->getAll();
             </div>
             <div id="content" class="content" style="margin-top:50px">
                 <?php
-                    if(!isset($_SESSION['selectedProd']) || !$_SESSION['selectedProd']) {
+                    if (!isset($_SESSION['selectedProd']) || !$_SESSION['selectedProd']) {
                         echo '<div class="alert alert-info" role="alert">
                         Veuillez choisir une production !</div>';
                     }
