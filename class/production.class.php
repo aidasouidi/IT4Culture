@@ -11,16 +11,64 @@ class Production
 
     /**
      * get all production rows from database
+     *
+     * @return array
      */
-    public function getAll()
+    public function getAll() : array
     {
         $query = 'SELECT * from ' .$this->table;
         return $this->db->fetchAll($query, []);
     }
+
     /**
-    * get all production rows with associated dates and distribution
+     * get all production rows by id with associated dates and distribution
+     *
+     * @param integer $id the id of production
+     *
+     * @return array $res
+     */
+    public function getByIdWithDistAndDates($id) : array
+    {
+        $query = 'SELECT * from ' .$this->table .' p where p.id = ?';
+        $res = $this->db->fetch($query, [$id]);
+        $res['distributions'] = $this->getProductionDistributionsById($id);
+        $res['dates'] = $this->getProductionDatesById($id);
+
+        return $res;
+    }
+
+    /**
+     * get all distribution rows by id production
+     *
+     * @param integer $id the id of production
+     *
+     * @return array
+     */
+    private function getProductionDistributionsById($id) : array
+    {
+        $query = 'SELECT * from distribution where idProduction = ?';
+        return $this->db->fetchAll($query, [$id]);
+    }
+
+    /**
+     * get all production dates by id production
+     *
+     * @param integer $id the id of production
+     *
+     * @return array
+     */
+    private function getProductionDatesById($id) : array
+    {
+        $query = 'SELECT * from productions_dates where idProduction = ?';
+        return $this->db->fetchAll($query, [$id]);
+    }
+
+    /**
+     * get all production rows with associated dates and distribution
+     *
+     * @return array $result
     */
-    public function getAllWithDistAndDates()
+    public function getAllWithDistAndDates() : array
     {
         $query = 'SELECT * from ' .$this->table;
         $res = $this->db->fetchAll($query, []);
@@ -33,37 +81,4 @@ class Production
         return $result;
     }
 
-    /**
-     * get all production rows by id with associated dates and distribution
-     * @param integer $id the id of production
-     */
-    public function getByIdWithDistAndDates($id)
-    {
-        $query = 'SELECT * from ' .$this->table .' p where p.id = ?';
-        $res = $this->db->fetch($query, [$id]);
-        $res['distributions'] = $this->getProductionDistributionsById($id);
-        $res['dates'] = $this->getProductionDatesById($id);
-
-        return $res;
-    }
-
-    /**
-     * get all distribution rows by id production
-     * @param integer $id the id of production
-     */
-    private function getProductionDistributionsById($id)
-    {
-        $query = 'SELECT * from distribution where idProduction = ?';
-        return $this->db->fetchAll($query, [$id]);
-    }
-
-    /**
-     * get all production dates by id production
-     * @param integer $id the id of production
-     */
-    private function getProductionDatesById($id)
-    {
-        $query = 'SELECT * from productions_dates where idProduction = ?';
-        return $this->db->fetchAll($query, [$id]);
-    }
 }

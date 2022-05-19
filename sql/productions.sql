@@ -8,6 +8,8 @@ CREATE TABLE IF NOT EXISTS `productions` (
   `compositeur` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+CREATE INDEX `productions_index_0` ON `productions` (`id`);
+
 --
 -- Dumping data for table `productions`
 --

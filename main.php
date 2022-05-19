@@ -20,7 +20,9 @@ require_once('class/production.class.php');
 
 //get DB config
 $dbConfig = include 'config/db_config.php';
+//connection to database
 $db = new db($dbConfig['host'], $dbConfig['username'], $dbConfig['password'], $dbConfig['database']);
+//get all production rows from database
 $prds = new Production($db);
 $prodList = $prds->getAll();
 
@@ -81,6 +83,7 @@ $prodList = $prds->getAll();
     </main>
 </body>
 <script>
+// get details of selected production
 function getDetails() {
     var d = document.getElementById("productions").value;
     var xmlhttp = new XMLHttpRequest();
@@ -93,6 +96,7 @@ function getDetails() {
     xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
     xmlhttp.send("idProd=" + d);
 }
+// show add distribution form
 function showForm() {
     var x = document.getElementById("distForm");
     if (x.style.display === "none") {

@@ -11,9 +11,12 @@ class Distribution
 
     /**
      * insert into distribution table
+     *
      * @param array $data data to insert
+     *
+     * @return void
      */
-    public function insert($data)
+    public function insert($data) : void
     {
         $query = 'INSERT INTO ' .$this->table . ' (idProduction, role, artiste) values (?, ?, ?)';
         $this->db->runQuery($query, $data);

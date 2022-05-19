@@ -7,6 +7,14 @@ class db
     public $isConnected = false;
     private $errors = true;
 
+    /**
+     * PDO instance PDO for database connexion
+     *
+     * @param string $db_host
+     * @param string $db_username
+     * @param string $db_password
+     * @param string $db_database
+     */
     public function __construct($db_host, $db_username, $db_password, $db_database)
     {
         try {
@@ -27,8 +35,10 @@ class db
      * descrut connection
      * delete object from memory
      * liberate memory space
+     *
+     * @return void
      */
-    public function close()
+    public function close() : void
     {
         $this->isConnected = false;
         $this->connection = null;
@@ -36,8 +46,11 @@ class db
 
     /**
      * single select request from database
+     *
      * @param string $query request to execute
      * @param array @parameters request params
+     *
+     * @return array|bool
      */
     public function fetch($query, $parameters = array())
     {
@@ -60,8 +73,11 @@ class db
 
     /**
      * requete multiple select  from DB
+     *
      * @param string $query la requete
      * @param array @parameters les param de la requete
+     *
+     * @return bool|array
      */
     public function fetchAll($query, $parameters = array())
     {
@@ -83,8 +99,11 @@ class db
 
     /**
      * exceute sql request
+     *
      * @param string $query request to execute
      * @param array @parameters request params
+     *
+     * * @return bool|void
      */
     public function runQuery($query, $parameters = array())
     {
@@ -104,7 +123,10 @@ class db
 
     /**
      * check exist table on DB
+     *
      * @param string $table name of table
+     *
+     * @return bool|int
      */
     public function tableExists($table)
     {
@@ -126,7 +148,10 @@ class db
 
     /**
      * dump DB from file
+     *
      * @param string $file path of dump file
+     *
+     * @return bool|void
      */
     public function dump($file)
     {
@@ -142,7 +167,6 @@ class db
                         $query->execute();
                     }
                 }
-                
                 return true;
             } catch (PDOException $e) {
                 throw new PDOException($e->getMessage());

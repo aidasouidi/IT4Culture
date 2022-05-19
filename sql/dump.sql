@@ -12,9 +12,13 @@ CREATE TABLE IF NOT EXISTS `distribution` (
   `id` int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
   `idProduction` int(11) NOT NULL,
   `role` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
-  `artiste` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL
+  `artiste` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  CONSTRAINT idProduction_fk FOREIGN KEY (idProduction) REFERENCES productions (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- index --
+CREATE INDEX `distribution_index_2` ON `distribution` (`role`);
+CREATE INDEX `distribution_index_3` ON `distribution` (`artiste`);
 --
 -- Dumping data for table `distribution`
 --
@@ -61,8 +65,12 @@ CREATE TABLE IF NOT EXISTS `productions_dates` (
   `id` int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
   `idProduction` int(11) NOT NULL,
   `dateHeure` datetime NOT NULL,
-  `commentaire` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL
+  `commentaire` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL,
+  CONSTRAINT idProduction_fk FOREIGN KEY (idProduction) REFERENCES productions (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- index --
+CREATE INDEX `productions_dates_index_5` ON `productions_dates` (`dateHeure`);
 
 --
 -- Dumping data for table `productions_dates`
